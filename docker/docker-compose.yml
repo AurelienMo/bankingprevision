@@ -1,0 +1,107 @@
+version: "3.8"
+services:
+  db:
+    container_name: bankingprevision_api_database
+    image: percona/percona-server
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bankingprevision
+      MYSQL_USER: bankinguser
+      MYSQL_PASSWORD: bankingdev
+    ports:
+      - '3306:3306'
+    volumes:
+      - bankingprevision_api_data:/var/lib/mysql
+      - ${PATH_TO_DUMP_FOLDER}:/shared/dumps
+    command: mysqld --sql_mode=""
+    restart: on-failure
+    networks:
+      - bankingprevision_api
+
+  www:
+    build:
+      context: php
+      dockerfile: Dockerfile
+      args:
+        web_vhost: https://api.dev.bankingprevision.fr
+    container_name: bankingprevision_api_www
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./php/vhosts:/etc/apache2/sites-enabled
+      - ${API_FOLDER}:/var/www:rw
+      - ./logs:/var/log/apache2
+      - vendor:/var/www/vendor:rw
+      - cache:/var/www/var/cache:rw
+      - log:/var/www/var/log:rw
+      - ./php/conf.ini/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini:delegated
+    restart: on-failure
+    environment:
+      VIRTUAL_HOST: https://api.dev.bankingprevision.fr
+    networks:
+      - bankingprevision_api
+
+  postgres:
+    image: postgres
+    container_name: bankingprevision_api_postgres
+    volumes:
+      - bankingprevision_keycloak_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+    networks:
+      - bankingprevision_api
+
+  composer:
+    image: composer:latest
+    container_name: bankingprevision_api_composer
+    volumes:
+      - ${API_FOLDER}:/var/www:z
+      - vendor:/var/www/vendor
+      - cache:/var/www/var/cache
+      - log:/var/www/var/log
+    working_dir: /var/www
+    command: sh -c "composer install --ignore-platform-reqs --no-scripts"
+    depends_on:
+      - www
+    networks:
+      - bankingprevision_api
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    container_name: bankingprevision_api_keycloak
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: keycloak
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    ports:
+      - 8080:8080
+      - 8443:8443
+    depends_on:
+      - postgres
+    networks:
+      - bankingprevision_api
+
+volumes:
+  bankingprevision_keycloak_data:
+    driver: local
+  bankingprevision_api_data:
+    driver: local
+  vendor:
+    name: bankingprevision_api_vendor
+  cache:
+    name: bankingprevision_api_cache
+  log:
+    name: bankingprevision_api_log
+
+networks:
+  bankingprevision_api:
