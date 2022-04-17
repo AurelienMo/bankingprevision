@@ -36,12 +36,18 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "BankingPrevision\\Domain\\": "src/Domain",
+            "BankingPrevision\\Infrastructure\\": "src/Infrastructure",
+            "BankingPrevision\\UI\\": "src/UI",
+            "BankingPrevision\\Application\\": "src/Application"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "BankingPrevision\\Domain\\Tests\\": "src/Domain/tests",
+            "BankingPrevision\\Infrastructure\\Tests\\": "src/Infrastructure/tests",
+            "BankingPrevision\\UI\\Tests\\": "src/UI/tests",
+            "BankingPrevision\\Application\\Tests\\": "src/Application/tests"
         }
     },
     "replace": {
