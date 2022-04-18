@@ -1,6 +1,6 @@
 <?php
 
-namespace BankingPrevision\Infrastructure\CommandAdapters\CategoryOperation;
+namespace BankingPrevision\Application\CommandAdapters\CategoryOperation;
 
 use BankingPrevision\Domain\Shared\Ports\Outputs\DomainEventInterface;
 use BankingPrevision\Infrastructure\Entity\CategoryOperation;
