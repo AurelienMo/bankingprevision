@@ -149,6 +149,14 @@ test-unit: ## Run phpunit
 test-unit: ${PATH_PROJECT}/tests
 	$(DOCKER_PHP) "vendor/bin/phpunit $(ARGS)"
 
+test-domain: ## Run phpunit
+test-domain:
+	$(DOCKER_PHP) "vendor/bin/phpunit --testsuite Domain $(ARGS)"
+
+coverage-domain: ## Run phpunit
+coverage-domain:
+	$(DOCKER_PHP) "XDEBUG_MODE=coverage vendor/bin/phpunit --testsuite Domain --coverage-html coverage/Domain $(ARGS)"
+
 coverage: ## Run phpunit with code coverage
 coverage: ${PATH_PROJECT}/tests
 	make ex
