@@ -134,7 +134,7 @@ phpcs: ${PATH_PROJECT}/vendor/bin/phpcs
 	$(DOCKER_PHP) "vendor/bin/phpcs"
 
 phpstan: ## Run phpstan
-phpstan: ${PATH_PROJECT}/vendor/bin/phpstan
+phpstan:
 	$(DOCKER_PHP) "vendor/bin/phpstan analyze src"
 
 phpcbf: ## Run PHPCBF
@@ -152,6 +152,10 @@ test-unit: ${PATH_PROJECT}/tests
 test-domain: ## Run phpunit
 test-domain:
 	$(DOCKER_PHP) "vendor/bin/phpunit --testsuite Domain $(ARGS)"
+
+deptrac: ## Run phpunit
+deptrac:
+	$(DOCKER_PHP) "vendor/bin/deptrac"
 
 coverage-domain: ## Run phpunit
 coverage-domain:

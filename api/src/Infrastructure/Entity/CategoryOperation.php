@@ -3,7 +3,6 @@
 namespace BankingPrevision\Infrastructure\Entity;
 
 use BankingPrevision\Domain\CategoryOperation\Model\CategoryOperationModel;
-use JetBrains\PhpStorm\Pure;
 
 class CategoryOperation
 {
@@ -15,7 +14,6 @@ class CategoryOperation
 
     private string $image;
 
-    #[Pure]
     public static function createFromCli(CategoryOperationModel $categoryModel): CategoryOperation
     {
         $self = new self();
