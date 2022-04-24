@@ -1,4 +1,7 @@
 {
+    "brick/math": {
+        "version": "0.9.3"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -104,6 +107,9 @@
     "phpspec/prophecy": {
         "version": "v1.15.0"
     },
+    "phpstan/phpstan": {
+        "version": "1.5.6"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.15"
     },
@@ -144,6 +150,24 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "qossmic/deptrac-shim": {
+        "version": "0.19",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.19",
+            "ref": "3c3daab46226c37fc14e10faf81df737a3039d96"
+        },
+        "files": [
+            "deptrac.yaml"
+        ]
+    },
+    "ramsey/collection": {
+        "version": "1.2.2"
+    },
+    "ramsey/uuid": {
+        "version": "4.3.1"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"

@@ -1,0 +1,48 @@
+parameters:
+    paths:
+        - ./src
+    exclude_files:
+        - '#.*test.*#'
+    layers:
+        - name: Domain
+          collectors:
+              - type: directory
+                regex: src/Domain/.*
+        - name: Infrastructure
+          collectors:
+              - type: directory
+                regex: src/Infrastructure/.*
+        - name: Application
+          collectors:
+              - type: directory
+                regex: src/Application/.*
+        - name: UI/Controller
+          collectors:
+              - type: directory
+                regex: src/UI/Controllers.*
+        - name: UI/Command
+          collectors:
+              - type: directory
+                regex: src/UI/Command.*
+        - name: UI/Presenter
+          collectors:
+              - type: directory
+                regex: src/UI/Presenter.*
+    ruleset:
+        Infrastructure:
+            - Infrastructure
+            - Domain
+        Application:
+            - Application
+            - Infrastructure
+            - Domain
+        UI/Controller:
+            - Domain
+            - UI/Presenter
+        UI/Command:
+          - Domain
+          - UI/Presenter
+        UI/Presenter:
+          - Domain
+        Domain:
+            - Domain

@@ -3,3 +3,4 @@
 docker/.env
 docker/logs/*
 !docker/logs/.gitkeep
+api/coverage/*

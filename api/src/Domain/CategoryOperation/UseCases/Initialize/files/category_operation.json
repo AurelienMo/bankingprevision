@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Taxes",
+    "image": "taxes.png"
+  },
+  {
+    "name": "Salaire",
+    "image": "revenus.png"
+  },
+  {
+    "name": "Aides sociales",
+    "image": "revenus.png"
+  },
+  {
+    "name": "Maison",
+    "image": "maison.png"
+  },
+  {
+    "name": "Abonnements",
+    "image": "abonnements.png"
+  },
+  {
+    "name": "Assurances",
+    "image": "assurances.png"
+  },
+  {
+    "name": "Scolarité",
+    "image": "scolarite.png"
+  },
+  {
+    "name": "Sports",
+    "image": "sports.png"
+  },
+  {
+    "name": "Vie courante",
+    "image": "vie_courante.png"
+  },
+  {
+    "name": "Santé",
+    "image": "sante.png"
+  },
+  {
+    "name": "Animaux",
+    "image": "animaux.png"
+  },
+  {
+    "name": "Credit",
+    "image": "credit.png"
+  }
+]

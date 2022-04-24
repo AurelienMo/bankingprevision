@@ -18,7 +18,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Domain test suite">
+        <testsuite name="Domain">
             <directory>src/Domain/tests</directory>
         </testsuite>
     </testsuites>
@@ -27,16 +27,8 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">src/Domain/tests</directory>
+        </exclude>
     </coverage>
-
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
-
-    <!-- Run `composer require symfony/panther` before enabling this extension -->
-    <!--
-    <extensions>
-        <extension class="Symfony\Component\Panther\ServerExtension" />
-    </extensions>
-    -->
 </phpunit>

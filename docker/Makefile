@@ -134,7 +134,7 @@ phpcs: ${PATH_PROJECT}/vendor/bin/phpcs
 	$(DOCKER_PHP) "vendor/bin/phpcs"
 
 phpstan: ## Run phpstan
-phpstan: ${PATH_PROJECT}/vendor/bin/phpstan
+phpstan:
 	$(DOCKER_PHP) "vendor/bin/phpstan analyze src"
 
 phpcbf: ## Run PHPCBF
@@ -148,6 +148,18 @@ phpcbf: ${PATH_PROJECT}/vendor/bin/phpcbf
 test-unit: ## Run phpunit
 test-unit: ${PATH_PROJECT}/tests
 	$(DOCKER_PHP) "vendor/bin/phpunit $(ARGS)"
+
+test-domain: ## Run phpunit
+test-domain:
+	$(DOCKER_PHP) "vendor/bin/phpunit --testsuite Domain $(ARGS)"
+
+deptrac: ## Run phpunit
+deptrac:
+	$(DOCKER_PHP) "vendor/bin/deptrac"
+
+coverage-domain: ## Run phpunit
+coverage-domain:
+	$(DOCKER_PHP) "XDEBUG_MODE=coverage vendor/bin/phpunit --testsuite Domain --coverage-html coverage/Domain $(ARGS)"
 
 coverage: ## Run phpunit with code coverage
 coverage: ${PATH_PROJECT}/tests
