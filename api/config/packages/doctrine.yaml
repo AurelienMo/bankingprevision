@@ -13,7 +13,7 @@ doctrine:
             App:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Infrastructure/Resources/doctrine/mappings'
-                prefix: 'BankingPrevision\Infrastructure\Entity'
+                prefix: 'BankingPrevision\Domain\Model'
                 type: xml
 
 when@test:

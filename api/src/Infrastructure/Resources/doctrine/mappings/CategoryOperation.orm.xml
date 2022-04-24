@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="BankingPrevision\Infrastructure\Entity\CategoryOperation" table="category_operation">
+    <entity name="BankingPrevision\Domain\Model\CategoryOperation" table="category_operation">
         <id name="id" column="id" type="string">
             <generator strategy="NONE"/>
         </id>

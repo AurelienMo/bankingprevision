@@ -21,7 +21,7 @@ class LoadInitializeCategoryCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('bankprovision:load-category')
+            ->setName('bankprevision:load-category')
             ->setDescription('Load default category operation');
     }
 
